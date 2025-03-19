@@ -1,6 +1,7 @@
 from appwrite.client import Client
 from appwrite.services.users import Users
 from appwrite.exception import AppwriteException
+import os
 
 def main(context):
     try:
@@ -17,8 +18,8 @@ def main(context):
         # init appwrite admin client
         client = Client()
         client.set_endpoint('https://cloud.appwrite.io/v1')
-        client.set_project(context.env.get('APPWRITE_FUNCTION_PROJECT_ID'))
-        client.set_key(context.env.get('APPWRITE_API_KEY'))
+        client.set_project(os.environ['APPWRITE_FUNCTION_PROJECT_ID'])
+        client.set_key(os.environ['APPWRITE_API_KEY'])
         
         # update user verification status
         users = Users(client)
